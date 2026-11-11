@@ -9,10 +9,14 @@ export class LoginPage
     private readonly Success_Message:Locator
     private readonly Incorrect_user_message:Locator
     private readonly Incorrect_password_message:Locator
+    private readonly Practice_menu:Locator
+    private readonly Test_Login_Page_option:Locator
 
     constructor(page:Page)
     {
         this.page = page
+        this.Practice_menu = page.locator("#menu-item-20")
+        this.Test_Login_Page_option = page.getByText("Test Login Page")
         this.Username_field = page.locator("#username")
         this.Password_field = page.locator("#password")
         this.Submit_button = page.locator("#submit")
@@ -23,6 +27,8 @@ export class LoginPage
 
     async Login_User_account(user:string, passwd:string)
     {
+        await this.Practice_menu.click()
+        await this.Test_Login_Page_option.click()
         await this.Username_field.fill(user)
         await this.Password_field.fill(passwd)
         await this.Submit_button.click()

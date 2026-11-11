@@ -10,6 +10,6 @@ export class URL_Page
     }
     async GetURL()
     {
-        await this.page.goto("https://practicetestautomation.com/practice-test-login/")
+        await this.page.goto("https://practicetestautomation.com/")
     }
 }

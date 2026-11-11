@@ -9,7 +9,7 @@ const wrong_passwd = "pass"
 const waiting_time = 5000
 const success_url = "https://practicetestautomation.com/logged-in-successfully/"
 
-test('Login User Successful',async({page})=>
+test('Verify Login User Successful',async({page})=>
 {
     const get_url = new URL_Page(page)
     const login_user = new LoginPage(page)
@@ -22,7 +22,7 @@ test('Login User Successful',async({page})=>
     await login_user.Verify_user_success_login()
 })
 
-test('Provide incorrect username',async({page})=>
+test('Verify login user fails with an incorrect username',async({page})=>
 {
     const get_url = new URL_Page(page)
     const login_user = new LoginPage(page)
@@ -34,7 +34,7 @@ test('Provide incorrect username',async({page})=>
     await login_user.Verify_incorrect_username()
 })
 
-test('Provide incorrect password',async({page})=>
+test('Verify login user fails with an incorrect password',async({page})=>
 {
     const get_url = new URL_Page(page)
     const login_user = new LoginPage(page)
