@@ -6,8 +6,9 @@ on:
     branches: [ main, master ]
 
   schedule:
-    - cron: '15 17 * * *'
-      timezone: 'America/La_Paz'
+    # 17:35 hora de Bolivia (UTC-4, sin horario de verano) = 21:35 UTC.
+    # GitHub interpreta el cron en UTC.
+    - cron: '35 21 * * *'
 jobs:
   test:
     timeout-minutes: 60
