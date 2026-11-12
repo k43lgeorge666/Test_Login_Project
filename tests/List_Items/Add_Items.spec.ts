@@ -32,5 +32,18 @@ test('Verify an existed item is edited',async({page})=>
     await List_items.Verify_item_added()
 })
 
+test('Verify an item is removed from the list',async({page})=>
+{
+    const get_url = new URL_Page(page)
+    const List_items = new List_items_Page(page)
+
+    await get_url.GetURL()
+    await List_items.Add_an_input_field()
+    await page.waitForTimeout(waiting_time)
+    await List_items.Add_item_to_list(food)
+    await List_items.Remove_an_item()
+    await List_items.Verify_item_removed()  
+})
+
 
 
