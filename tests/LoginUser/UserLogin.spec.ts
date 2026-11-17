@@ -45,3 +45,39 @@ test('Verify login user fails with an incorrect password',async({page})=>
     await page.waitForTimeout(waiting_time)
     await login_user.Verify_incorrect_password()
 })
+
+test('Verify login user fails with username in blank',async({page})=>
+{
+    const get_url = new URL_Page(page)
+    const login_user = new LoginPage(page)
+
+    await get_url.GetURL()
+    await page.waitForTimeout(waiting_time)
+    await login_user.Login_User_account("",wrong_passwd)
+    await page.waitForTimeout(waiting_time)
+    await login_user.Verify_incorrect_username()
+})
+
+test('Verify login user fails with password in blank',async({page})=>
+{
+    const get_url = new URL_Page(page)
+    const login_user = new LoginPage(page)
+
+    await get_url.GetURL()
+    await page.waitForTimeout(waiting_time)
+    await login_user.Login_User_account(username,"")
+    await page.waitForTimeout(waiting_time)
+    await login_user.Verify_incorrect_password()
+})
+
+test('Verify login user fails with credentials in blank',async({page})=>
+{
+    const get_url = new URL_Page(page)
+    const login_user = new LoginPage(page)
+
+    await get_url.GetURL()
+    await page.waitForTimeout(waiting_time)
+    await login_user.Login_User_account("","")
+    await page.waitForTimeout(waiting_time)
+    await login_user.Verify_incorrect_username()
+})
