@@ -10,6 +10,16 @@ export class List_Automation_Courses
     private readonly First_language_value:Locator
     private readonly First_level_value:Locator
     private readonly First_enrollment_value:Locator
+    private readonly Java_radio_button:Locator
+    private readonly Java_language_value1:Locator
+    private readonly Java_language_value2:Locator
+    private readonly Java_course_name1:Locator
+    private readonly Java_course_name2:Locator
+    private readonly Java_level_value1:Locator
+    private readonly Java_level_value2:Locator
+    private readonly Java_enroll_value1:Locator
+    private readonly Java_enroll_value2:Locator
+
     
     constructor(page:Page)
     {
@@ -21,6 +31,15 @@ export class List_Automation_Courses
         this.First_language_value = page.locator("//td[normalize-space()='Any']")
         this.First_level_value = page.locator("//tbody/tr[1]/td[4]")
         this.First_enrollment_value = page.locator("//td[normalize-space()='1365']")
+        this.Java_radio_button = page.locator("//input[@value='Java']")
+        this.Java_language_value1 = page.locator("//tbody/tr[1]/td[3]")
+        this.Java_language_value2 = page.locator("//tbody/tr[2]/td[3]")
+        this.Java_course_name1 = page.locator("//td[normalize-space()='Advanced Selenium']")
+        this.Java_course_name2 = page.locator("//td[normalize-space()='Java for Testers']")
+        this.Java_level_value1 = page.locator("//tbody/tr[1]/td[4]")
+        this.Java_level_value2 = page.locator("//tbody/tr[2]/td[4]")
+        this.Java_enroll_value1 = page.locator("//td[normalize-space()='2207']")
+        this.Java_enroll_value2 = page.locator("//td[normalize-space()='2667']")
 
     }
 
@@ -31,6 +50,17 @@ export class List_Automation_Courses
         await this.Sort_by_id.selectOption(sort_value)
 
     }
+
+    async List_java_courses_in_all_levels(sort_value:string)
+    {
+        await this.Practice_menu.click();
+        await this.Test_Table_Page_option.click();
+        await this.Java_radio_button.click()
+        await this.Sort_by_id.selectOption(sort_value)
+
+    }
+
+    // ALL COURSES VERIFICATION
 
     async Verify_the_courses_are_sorted_by_ID()
     {
@@ -55,5 +85,32 @@ export class List_Automation_Courses
     async Verify_the_courses_are_sorted_by_Enrollment()
     {
         await expect(this.First_enrollment_value).toHaveText("1365")
+    }
+
+
+    // JAVA COURSES VERIFICATION
+
+    async Verify_the_courses_are_sorted_by_Java_course_name()
+    {
+        await expect(this.Java_course_name1).toHaveText("Advanced Selenium")
+        await expect(this.Java_course_name2).toHaveText("Java for Testers")
+    }
+
+    async Verify_the_courses_are_sorted_by_Java_Language_only()
+    {
+        await expect(this.Java_language_value1).toHaveText("Java")
+        await expect(this.Java_language_value2).toHaveText("Java")
+    }
+    
+    async Verify_the_courses_are_sorted_by_Java_Level_only()
+    {
+        await expect(this.Java_level_value1).toHaveText("Advanced")
+        await expect(this.Java_level_value2).toHaveText("Advanced")
+    }
+
+    async Verify_the_courses_are_sorted_by_Java_Enrollments_only()
+    {
+        await expect(this.Java_enroll_value1).toHaveText("2207")
+        await expect(this.Java_enroll_value2).toHaveText("2667")
     }
 }
